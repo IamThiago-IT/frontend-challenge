@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build
+dist/
+dist-ssr/
+*.tsbuildinfo
+.vite/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+pnpm-debug.log*
+
+# Tests
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.playwright-browsers/
+
+# Lighthouse
+lighthouse-reports/
+
+# Misc
+*.pem
