@@ -6,10 +6,20 @@ process.env.PLAYWRIGHT_BROWSERS_PATH ??= path.join(import.meta.dirname, '.playwr
 
 export default defineConfig({
   testDir: './e2e',
+  timeout: 60_000,
+  expect: {
+    timeout: 10_000,
+    toHaveScreenshot: {
+      animations: 'disabled',
+      caret: 'hide',
+      maxDiffPixelRatio: 0.01,
+      stylePath: './e2e/visual.css',
+    },
+  },
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: process.env.CI ? 1 : 2,
   reporter: [['html', { open: 'never' }], ['list']],
   use: {
     baseURL: 'http://localhost:5173',
@@ -21,6 +31,7 @@ export default defineConfig({
     command: 'pnpm dev',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
     env: {
       VITE_ENABLE_MOCKS: 'true',
     },

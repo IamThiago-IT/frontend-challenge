@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title>Studio Kite</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a6ffb8"/>
+      <stop offset="1" stop-color="#0d7f76"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <path d="M100 34l58 100H42z" fill="#063b38" opacity=".85"/>
+  <circle cx="100" cy="126" r="18" fill="#c9ffd6"/>
+  <path d="M100 48l42 72h-84z" fill="none" stroke="#c9ffd6" stroke-width="4" opacity=".7"/>
+</svg>

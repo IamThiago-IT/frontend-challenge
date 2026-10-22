@@ -3,14 +3,21 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { Providers } from '@/app/providers'
+import { createQueryClient } from '@/app/query-client'
 import { env } from '@/lib/env'
 import { routeTree } from '@/routeTree.gen'
 
 import '@/styles/globals.css'
 
+const queryClient = createQueryClient()
+
 const router = createRouter({
   routeTree,
+  context: {
+    queryClient,
+  },
   defaultPreload: 'intent',
+  defaultPreloadStaleTime: 0,
   scrollRestoration: true,
 })
 
@@ -33,6 +40,7 @@ async function enableMocking() {
       url: '/mockServiceWorker.js',
     },
   })
+  window.__APP_MOCKS_READY__ = true
 }
 
 async function bootstrap() {
@@ -46,7 +54,7 @@ async function bootstrap() {
 
   createRoot(rootElement).render(
     <StrictMode>
-      <Providers>
+      <Providers queryClient={queryClient}>
         <RouterProvider router={router} />
       </Providers>
     </StrictMode>,

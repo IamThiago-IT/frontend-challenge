@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title>Mara Vox</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7a7ff"/>
+      <stop offset="1" stop-color="#6c2bd9"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <circle cx="100" cy="80" r="37" fill="#2a0c4d" opacity=".9"/>
+  <path d="M44 178c8-44 30-66 56-66s48 22 56 66z" fill="#2a0c4d" opacity=".9"/>
+  <path d="M78 70c14-10 30-10 44 0" stroke="#ffd9ff" stroke-width="5" fill="none"/>
+  <path d="M80 98c13 10 27 10 40 0" stroke="#ffd9ff" stroke-width="5" fill="none"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title>Caio Reis</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfe7e2"/>
+      <stop offset="1" stop-color="#708078"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <circle cx="100" cy="80" r="38" fill="#2a3531" opacity=".92"/>
+  <path d="M42 180c8-46 31-68 58-68s50 22 58 68z" fill="#2a3531" opacity=".92"/>
+  <path d="M70 68c18-16 42-16 60 0" stroke="#dfe7e2" stroke-width="4" fill="none" opacity=".7"/>
+</svg>
