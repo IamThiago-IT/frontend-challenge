@@ -1,0 +1,11 @@
+README.md
+
+dist
+node_modules
+.pnpm-store
+pnpm-lock.yaml
+src/routeTree.gen.ts
+public/mockServiceWorker.js
+playwright-report
+test-results
+lighthouse-reports

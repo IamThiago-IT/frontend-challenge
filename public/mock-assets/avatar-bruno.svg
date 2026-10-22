@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title>Bruno Costa</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9ad7ff"/>
+      <stop offset="1" stop-color="#27539b"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <circle cx="100" cy="82" r="38" fill="#0d2748" opacity=".9"/>
+  <path d="M42 180c8-44 30-66 58-66s50 22 58 66z" fill="#0d2748" opacity=".9"/>
+  <path d="M72 96c16 12 40 12 56 0" stroke="#d7efff" stroke-width="4" fill="none" opacity=".6"/>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title">
+  <title>Último Lance</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#07172e"/>
+      <stop offset="1" stop-color="#18304a"/>
+    </linearGradient>
+    <radialGradient id="light" cx=".5" cy=".2" r=".8">
+      <stop offset="0" stop-color="#fff4c9" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#fff4c9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect width="600" height="600" fill="url(#light)"/>
+  <g fill="none" stroke="#8fd3ff" stroke-opacity=".3">
+    <ellipse cx="300" cy="500" rx="250" ry="70"/>
+    <ellipse cx="300" cy="430" rx="170" ry="45"/>
+    <path d="M300 120v380M180 260h240"/>
+  </g>
+  <circle cx="300" cy="250" r="70" fill="#ffcf5c"/>
+  <path d="M300 200l16 33 36 5-26 25 6 36-32-17-32 17 6-36-26-25 36-5z" fill="#14263d"/>
+  <g fill="#f5f8ff">
+    <path d="M90 520c20-80 80-130 160-120-40 45-70 80-90 130z" opacity=".4"/>
+    <path d="M510 520c-20-80-80-130-160-120 40 45 70 80 90 130z" opacity=".25"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title>Lia Prado</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffb37b"/>
+      <stop offset="1" stop-color="#b73f3f"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <circle cx="100" cy="78" r="38" fill="#3c1717" opacity=".85"/>
+  <path d="M45 175c6-42 30-66 55-66s49 24 55 66z" fill="#3c1717" opacity=".85"/>
+  <text x="100" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="1" fill="#fff">LP</text>
+</svg>

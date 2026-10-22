@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title">
+  <title>Atlas FC</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffd86b"/>
+      <stop offset="1" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="100" fill="url(#g)"/>
+  <path d="M100 40l14 34 37 4-28 25 8 37-31-19-31 19 8-37-28-25 37-4z" fill="#2b1605" opacity=".9"/>
+  <path d="M60 170h80" stroke="#2b1605" stroke-width="8" stroke-linecap="round" opacity=".9"/>
+</svg>
