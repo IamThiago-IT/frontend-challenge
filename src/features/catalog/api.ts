@@ -16,6 +16,7 @@ function buildListSearch(params: NftListParams) {
   }
 
   normalized.categories?.forEach((category) => search.append('category', category))
+  normalized.network?.forEach((network) => search.append('network', network))
 
   if (normalized.minPrice) {
     search.set('minPrice', normalized.minPrice)

@@ -4,7 +4,12 @@ import { gotoApp } from './helpers'
 
 test('busca, filtra, ordena e pagina o catálogo', async ({ page }) => {
   await gotoApp(page, '/')
-  await expect(page.getByRole('heading', { level: 1, name: 'Marketplace de NFTs' })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /SEJA DONO/ })).toBeVisible()
+
+  const searchToggle = page.getByRole('button', { name: 'Alternar busca' })
+  if (await searchToggle.isVisible()) {
+    await searchToggle.click()
+  }
 
   const search = page.getByLabel('Buscar NFTs')
   await search.fill('Ritmo Circular')

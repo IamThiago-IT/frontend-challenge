@@ -7,7 +7,8 @@ import type { RealtimeEvent } from '@/lib/socket/events'
 import type { MockScenario } from '@/mocks/scenario'
 
 export const mockDbSchemaVersion = 1
-export const mockSeedVersion = '2026-10-21.1'
+// Bump: seed com campo `network` obrigatório em NftSummary + novas imagens.
+export const mockSeedVersion = '2026-10-23.1'
 
 export type MockUser = UserProfile & {
   passwordSalt: string

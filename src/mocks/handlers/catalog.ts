@@ -17,6 +17,7 @@ export const catalogHandlers = [
         {
           q: url.searchParams.get('q') || undefined,
           categories: url.searchParams.getAll('category'),
+          network: url.searchParams.getAll('network'),
           minPrice: url.searchParams.get('minPrice') || undefined,
           maxPrice: url.searchParams.get('maxPrice') || undefined,
           availability: url.searchParams.get('availability') || undefined,
@@ -30,6 +31,7 @@ export const catalogHandlers = [
       const params: NftListParams = {
         ...data,
         categories: data.categories?.length ? data.categories : undefined,
+        network: data.network?.length ? data.network : undefined,
       }
 
       return jsonData(listNfts(params))

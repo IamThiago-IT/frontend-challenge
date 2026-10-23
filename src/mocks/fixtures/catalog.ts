@@ -344,13 +344,17 @@ const nftSeeds: NftSeed[] = [
   },
 ]
 
+const networks: NftDetail['network'][] = ['ethereum', 'polygon', 'solana']
 const baseTimestamp = Date.parse('2026-09-30T12:00:00.000Z')
 const dayInMilliseconds = 86_400_000
 
 export const seedNfts: NftDetail[] = nftSeeds.map((seed, index) => {
   const category = categoryDefinitions.find((item) => item.id === seed.category)
-  const imageIndex = String((index % 8) + 1).padStart(2, '0')
-  const secondaryImageIndex = String(((index + 3) % 8) + 1).padStart(2, '0')
+  const apeNumber = String((index % 4) + 1).padStart(2, '0')
+  const secondaryApeNumber = String(((index + 2) % 4) + 1).padStart(2, '0')
+  const imageUrl = `/design/nft-ape-${apeNumber}.jpg`
+  const secondaryImageUrl = `/design/nft-ape-${secondaryApeNumber}.jpg`
+  const network = networks[index % networks.length]
   const editionSold = seed.availability === 'sold_out' ? seed.editionSize : seed.editionSold
   const availableQuantity =
     seed.availability === 'available' || seed.availability === undefined
@@ -361,12 +365,13 @@ export const seedNfts: NftDetail[] = nftSeeds.map((seed, index) => {
   return {
     id: `nft-${String(index + 1).padStart(3, '0')}`,
     name: seed.name,
-    imageUrl: `/mock-assets/nft-${imageIndex}.svg`,
+    imageUrl,
     category: seed.category,
     collection: collections[seed.category],
     creator: creators[seed.creatorIndex] ?? creators[0],
     priceEth: seed.priceEth,
     currency: 'ETH',
+    network,
     availability: seed.availability ?? 'available',
     availableQuantity,
     editionSize: seed.editionSize,
@@ -377,11 +382,7 @@ export const seedNfts: NftDetail[] = nftSeeds.map((seed, index) => {
     createdAt,
     updatedAt: createdAt,
     description: `${seed.name} integra a coleção ${collections[seed.category].name}, uma edição digital de ${category?.label ?? 'arte'} criada para o marketplace.`,
-    gallery: [
-      `/mock-assets/nft-${imageIndex}.svg`,
-      `/mock-assets/nft-${secondaryImageIndex}.svg`,
-      `/mock-assets/nft-${imageIndex}.svg`,
-    ],
+    gallery: [imageUrl, secondaryImageUrl, imageUrl],
     attributes: [
       { traitType: 'Categoria', value: category?.label ?? seed.category },
       { traitType: 'Edição', value: `${seed.editionSize} unidades` },

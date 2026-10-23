@@ -42,6 +42,35 @@ function findUserCart(db: MockDb, userId: string) {
   return db.carts[`user:${userId}`] ?? null
 }
 
+type QuoteSignatureInput = Pick<
+  MockQuote,
+  | 'walletId'
+  | 'network'
+  | 'cartVersion'
+  | 'items'
+  | 'coupon'
+  | 'subtotalEth'
+  | 'discountEth'
+  | 'networkFeeEth'
+  | 'totalEth'
+  | 'currency'
+>
+
+function quoteSignature(quote: QuoteSignatureInput) {
+  return stableStringify({
+    walletId: quote.walletId,
+    network: quote.network,
+    cartVersion: quote.cartVersion,
+    items: quote.items,
+    coupon: quote.coupon,
+    subtotalEth: quote.subtotalEth,
+    discountEth: quote.discountEth,
+    networkFeeEth: quote.networkFeeEth,
+    totalEth: quote.totalEth,
+    currency: quote.currency,
+  })
+}
+
 export function createQuote(
   actor: MockAuthenticatedActor,
   walletId: string,
@@ -119,8 +148,33 @@ export function createQuote(
     network,
   )
   const createdAt = nowIso()
+  const signature = quoteSignature({
+    walletId: wallet.id,
+    network,
+    cartVersion: cart.version,
+    items: quoteItems,
+    coupon: appliedCoupon(coupon),
+    subtotalEth: totals.subtotalEth,
+    discountEth: totals.discountEth,
+    networkFeeEth: networkFeeFor(network),
+    totalEth: totals.totalEth,
+    currency: 'ETH',
+  })
 
   return mutateMockDb((draft) => {
+    // Reutiliza uma cotação idêntica ainda válida para que refetches não
+    // troquem o id e invalidem a confirmação do usuário no checkout.
+    const reusable = draft.quotes.find(
+      (item) =>
+        item.userId === actor.user.id &&
+        !isExpired(item.expiresAt) &&
+        quoteSignature(item) === signature,
+    )
+
+    if (reusable) {
+      return toQuote(reusable)
+    }
+
     const quote: MockQuote = {
       id: nextMockId(draft, 'quote'),
       userId: actor.user.id,

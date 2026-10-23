@@ -13,7 +13,7 @@ export async function loginAsAna(page: Page) {
   await page.getByLabel('Senha').fill('AnaNft#2026')
   await page.getByRole('button', { name: 'Entrar' }).click()
   await expect(page).toHaveURL(/\/$/)
-  await expect(page.getByRole('heading', { level: 1, name: 'Marketplace de NFTs' })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /SEJA DONO/ })).toBeVisible()
 }
 
 export async function setScenario(page: Page, patch: Record<string, unknown>) {

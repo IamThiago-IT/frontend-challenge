@@ -8,7 +8,7 @@ async function loginAsAna(page: Page) {
   await page.getByLabel('Senha').fill('AnaNft#2026')
   await page.getByRole('button', { name: 'Entrar' }).click()
   await expect(page).toHaveURL(/\/$/)
-  await expect(page.getByRole('heading', { level: 1, name: 'Marketplace de NFTs' })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /SEJA DONO/ })).toBeVisible()
 }
 
 async function addItemToCart(page: Page) {
@@ -201,7 +201,13 @@ test('preserva o rascunho após expirar a sessão', async ({ page }) => {
     }
   })
 
-  await page.getByRole('button', { name: 'Continuar para revisão' }).click()
+  // A sessão expirada pode ser detectada em background (refetch 401 → redirect para
+  // /login) antes ou durante o clique; ambos os caminhos são válidos, por isso o
+  // clique não deve falhar o teste se a navegação já tiver acontecido.
+  await page
+    .getByRole('button', { name: 'Continuar para revisão' })
+    .click({ timeout: 3_000 })
+    .catch(() => undefined)
   await expect(page).toHaveURL(/\/login/, { timeout: 10_000 })
 
   await page.getByLabel('E-mail').fill('ana@nft.test')

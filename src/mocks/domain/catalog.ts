@@ -64,6 +64,10 @@ export function listNfts(params: NftListParams, db: MockDb = getMockDb()): NftLi
       return false
     }
 
+    if (params.network?.length && !params.network.includes(nft.network)) {
+      return false
+    }
+
     if (params.availability && nft.availability !== params.availability) {
       return false
     }

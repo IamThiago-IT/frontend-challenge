@@ -61,6 +61,7 @@ function NftDetailPage() {
         creator: nft.creator,
         priceEth: nft.priceEth,
         currency: nft.currency,
+        network: nft.network,
         availability: nft.availability,
         availableQuantity: nft.availableQuantity,
         editionSize: nft.editionSize,

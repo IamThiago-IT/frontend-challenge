@@ -20,6 +20,7 @@ export const categoryIdSchema = z.enum([
 
 export const nftAvailabilitySchema = z.enum(['available', 'sold_out', 'unavailable'])
 export const nftSortSchema = z.enum(['recent', 'price-asc', 'price-desc', 'popular'])
+export const nftNetworkSchema = z.enum(['ethereum', 'polygon', 'solana'])
 
 export const nftCategorySchema = z.object({
   id: categoryIdSchema,
@@ -53,6 +54,7 @@ export const nftSummarySchema = z.object({
   creator: nftCreatorSchema,
   priceEth: positiveEthAmountSchema,
   currency: z.literal('ETH'),
+  network: nftNetworkSchema,
   availability: nftAvailabilitySchema,
   availableQuantity: z.number().int().nonnegative(),
   editionSize: z.number().int().positive(),
@@ -81,6 +83,14 @@ const categoryFilterSchema = z.preprocess((value) => {
   return Array.isArray(value) ? value : [value]
 }, z.array(categoryIdSchema).optional())
 
+const networkFilterSchema = z.preprocess((value) => {
+  if (value === undefined || value === null || value === '') {
+    return undefined
+  }
+
+  return Array.isArray(value) ? value : [value]
+}, z.array(nftNetworkSchema).optional())
+
 const featuredFilterSchema = z.preprocess((value) => {
   if (value === 'true') {
     return true
@@ -96,6 +106,7 @@ const featuredFilterSchema = z.preprocess((value) => {
 export const nftListQuerySchema = z.object({
   q: z.string().trim().max(100).optional(),
   categories: categoryFilterSchema,
+  network: networkFilterSchema,
   minPrice: ethAmountSchema.optional(),
   maxPrice: ethAmountSchema.optional(),
   availability: nftAvailabilitySchema.optional(),
@@ -108,6 +119,7 @@ export const nftListQuerySchema = z.object({
 export type CategoryId = z.infer<typeof categoryIdSchema>
 export type NftAvailability = z.infer<typeof nftAvailabilitySchema>
 export type NftSort = z.infer<typeof nftSortSchema>
+export type NftNetwork = z.infer<typeof nftNetworkSchema>
 export type NftCategory = z.infer<typeof nftCategorySchema>
 export type NftSummary = z.infer<typeof nftSummarySchema>
 export type NftDetail = z.infer<typeof nftDetailSchema>
@@ -115,6 +127,7 @@ export type NftListResponse = z.infer<typeof nftListResponseSchema>
 export type NftListParams = {
   q?: string
   categories?: CategoryId[]
+  network?: NftNetwork[]
   minPrice?: string
   maxPrice?: string
   availability?: NftAvailability
